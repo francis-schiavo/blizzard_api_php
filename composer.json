@@ -1,5 +1,5 @@
 {
-    "name": "francis/blizzard_api",
+    "name": "francis-schiavo/blizzard_api",
     "description": "PHP client for Blizzard web APIs",
     "type": "library",
     "license": "MIT",
