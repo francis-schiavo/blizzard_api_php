@@ -11,7 +11,8 @@ final class QuestTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testQuestIndex() {
+    public function testQuestIndex()
+    {
         $client = new Quest(cache: $this->cache);
         $data = $client->index();
 
@@ -32,7 +33,8 @@ final class QuestTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testQuestCategories() {
+    public function testQuestCategories()
+    {
         $client = new Quest(cache: $this->cache);
         $this->assertObjectHasAttribute('categories', $client->categories());
     }
@@ -49,7 +51,8 @@ final class QuestTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testQuestAreas() {
+    public function testQuestAreas()
+    {
         $client = new Quest(cache: $this->cache);
         $this->assertObjectHasAttribute('areas', $client->areas());
     }
@@ -66,7 +69,8 @@ final class QuestTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testQuestTypes() {
+    public function testQuestTypes()
+    {
         $client = new Quest(cache: $this->cache);
         $this->assertObjectHasAttribute('types', $client->types());
     }

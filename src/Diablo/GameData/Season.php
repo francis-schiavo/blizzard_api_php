@@ -3,11 +3,10 @@
 namespace BlizzardApi\Diablo\GameData;
 
 use BlizzardApi\Cache\CacheDuration;
-use BlizzardApi\Enumerators\EndpointNamespace;
 
 class Season extends GenericDataEndpoint
 {
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;
         $this->endpoint = 'season';

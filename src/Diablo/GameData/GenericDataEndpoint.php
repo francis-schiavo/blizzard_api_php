@@ -3,10 +3,10 @@
 namespace BlizzardApi\Diablo\GameData;
 
 use BlizzardApi\ApiException;
-use BlizzardApi\Enumerators\Region;
-use BlizzardApi\Enumerators\BaseURL;
 use BlizzardApi\Cache\ICacheProvider;
 use BlizzardApi\Diablo\Request;
+use BlizzardApi\Enumerators\BaseURL;
+use BlizzardApi\Enumerators\Region;
 use stdClass;
 
 abstract class GenericDataEndpoint extends Request
@@ -45,6 +45,11 @@ abstract class GenericDataEndpoint extends Request
         return $this->apiRequest("{$this->baseUrl(BaseURL::game_data)}/$this->endpoint/", $this->defaultOptions($options));
     }
 
+    protected function defaultOptions($options = []): array
+    {
+        return array_merge(['ttl' => $this->ttl], $options);
+    }
+
     /**
      * @param int $id
      * @param array $options
@@ -66,10 +71,5 @@ abstract class GenericDataEndpoint extends Request
     public function leaderboard(int $id, string $leaderboard_id, array $options = []): stdClass
     {
         return $this->apiRequest("{$this->baseUrl(BaseURL::game_data)}/$this->endpoint/$id/leaderboard/$leaderboard_id", $this->defaultOptions($options));
-    }
-
-    protected function defaultOptions($options = []): array
-    {
-        return array_merge(['ttl' => $this->ttl], $options);
     }
 }

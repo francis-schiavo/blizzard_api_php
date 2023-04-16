@@ -11,7 +11,8 @@ final class TalentTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testTalentIndex() {
+    public function testTalentIndex()
+    {
         $client = new Talent(cache: $this->cache);
         $this->assertObjectHasAttribute('talents', $client->index());
     }
@@ -19,15 +20,17 @@ final class TalentTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testTalentGet() {
+    public function testTalentGet()
+    {
         $client = new Talent(cache: $this->cache);
-        $this->assertEquals(15, $client->get(23106)->level);
+        $this->assertEquals('Best Served Cold', $client->get(117163)->spell->name->en_US);
     }
 
     /**
      * @throws ApiException
      */
-    public function testPvpTalents() {
+    public function testPvpTalents()
+    {
         $client = new Talent(cache: $this->cache);
         $this->assertObjectHasAttribute('pvp_talents', $client->pvpTalents());
     }
@@ -35,7 +38,8 @@ final class TalentTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testPvpTalent() {
+    public function testPvpTalent()
+    {
         $client = new Talent(cache: $this->cache);
         $this->assertEquals('Bane of Fragility', $client->pvpTalent(11)->spell->name->en_US);
     }

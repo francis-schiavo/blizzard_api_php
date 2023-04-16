@@ -22,7 +22,7 @@ class MythicKeystoneAffix extends GenericDataEndpoint
         return $this->apiRequest("{$this->baseUrl(BaseURL::media)}/keystone-affix/$id", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::static;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

@@ -2,7 +2,8 @@
 
 namespace BlizzardApi\Cache;
 
-interface ICacheProvider {
+interface ICacheProvider
+{
     /**
      * @param string $url Resource URL
      * @param string|null $data Buffer

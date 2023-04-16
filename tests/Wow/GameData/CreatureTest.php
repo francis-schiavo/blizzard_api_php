@@ -18,6 +18,10 @@ final class CreatureTest extends ApiTestCase
 
         $this->assertEquals('Young Mastiff', $client->get(42722)->name->en_US);
 
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertEquals('Raptor', $client->get(107, ['version' => EndpointVersion::classic])->name->en_US);
     }
 
@@ -30,9 +34,12 @@ final class CreatureTest extends ApiTestCase
 
         $this->assertObjectHasAttribute('creature_families', $client->families());
 
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertObjectHasAttribute('creature_families', $client->families(['version' => EndpointVersion::classic]));
     }
-
 
 
     /**
@@ -43,9 +50,13 @@ final class CreatureTest extends ApiTestCase
         $client = new Creature(cache: $this->cache);
 
         $this->assertEquals(
-            'https://render-us.worldofwarcraft.com/icons/56/ability_hunter_pet_wolf.jpg',
+            'https://render.worldofwarcraft.com/us/icons/56/ability_hunter_pet_wolf.jpg',
             $client->familyMedia(1)->assets[0]->value
         );
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
 
         $this->assertEquals(
             'https://render.worldofwarcraft.com/classic-us/icons/56/ability_hunter_pet_wolf.jpg',
@@ -62,6 +73,10 @@ final class CreatureTest extends ApiTestCase
 
         $this->assertObjectHasAttribute('creature_types', $client->types());
 
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertObjectHasAttribute('creature_types', $client->types(['version' => EndpointVersion::classic]));
     }
 
@@ -74,6 +89,10 @@ final class CreatureTest extends ApiTestCase
 
         $this->assertEquals('Beast', $client->type(1)->name->en_US);
 
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertEquals('Beast', $client->type(1, ['version' => EndpointVersion::classic])->name->en_US);
     }
 
@@ -85,9 +104,13 @@ final class CreatureTest extends ApiTestCase
         $client = new Creature(cache: $this->cache);
 
         $this->assertEquals(
-            'https://render-us.worldofwarcraft.com/npcs/zoom/creature-display-30221.jpg',
+            'https://render.worldofwarcraft.com/us/npcs/zoom/creature-display-30221.jpg',
             $client->displayMedia(30221)->assets[0]->value
         );
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
 
         $this->assertEquals(
             'https://render.worldofwarcraft.com/classic-us/npcs/zoom/creature-display-180.jpg',

@@ -30,6 +30,30 @@ class CharacterProfile extends Request
     }
 
     /**
+     * @param string $realm Realm name
+     * @param string $character Character name
+     * @param string|null $variant Endpoint variant
+     * @param array $options Request options
+     * @return stdClass
+     * @throws ApiException
+     */
+    private function characterRequest(string $realm, string $character, string|null $variant = null, array $options = []): stdClass
+    {
+        $uri = "{$this->baseUrl(BaseURL::profile)}/character/{$this->createSlug($realm)}/{$this->createSlug($character)}";
+
+        if ($variant) {
+            $uri .= "/$variant";
+        }
+
+        return $this->apiRequest($uri, $this->defaultOptions($options));
+    }
+
+    protected function defaultOptions($options = []): array
+    {
+        return array_merge(['namespace' => EndpointNamespace::profile, 'version' => EndpointVersion::retail, 'ttl' => CacheDuration::CACHE_HOUR->value], $options);
+    }
+
+    /**
      * Return character achievements
      *
      * @see https://develop.battle.net/documentation/api-reference/world-of-warcraft-profile-api
@@ -244,7 +268,7 @@ class CharacterProfile extends Request
      *
      * @param string $realm Realm name
      * @param string $character Character name
-     * @param int|null $season The ID of a M+ season or null for all seasons
+     * @param int|null $season The ID of an M+ season or null for all seasons
      * @param array $options Request options
      * @return stdClass
      * @throws ApiException
@@ -419,29 +443,5 @@ class CharacterProfile extends Request
     public function titles(string $realm, string $character, array $options = []): stdClass
     {
         return $this->characterRequest($realm, $character, 'titles', $options);
-    }
-
-    protected function defaultOptions($options = []): array
-    {
-        return array_merge(['namespace' => EndpointNamespace::profile, 'version' => EndpointVersion::retail, 'ttl' => CacheDuration::CACHE_HOUR->value], $options);
-    }
-
-    /**
-     * @param string $realm Realm name
-     * @param string $character Character name
-     * @param string|null $variant Endpoint variant
-     * @param array $options Request options
-     * @return stdClass
-     * @throws ApiException
-     */
-    private function characterRequest(string $realm, string $character, string|null $variant = null, array $options = []): stdClass
-    {
-        $uri = "{$this->baseUrl(BaseURL::profile)}/character/{$this->createSlug($realm)}/{$this->createSlug($character)}";
-
-        if ($variant) {
-            $uri .= "/$variant";
-        }
-
-        return $this->apiRequest($uri, $this->defaultOptions($options));
     }
 }

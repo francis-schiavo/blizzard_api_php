@@ -3,15 +3,16 @@
 namespace BlizzardApi\Tests\Diablo\GameData;
 
 use BlizzardApi\ApiException;
-use BlizzardApi\Tests\ApiTestCase;
 use BlizzardApi\Diablo\GameData\Season;
+use BlizzardApi\Tests\ApiTestCase;
 
 final class SeasonTest extends ApiTestCase
 {
     /**
      * @throws ApiException
      */
-    public function testSeasonIndex() {
+    public function testSeasonIndex()
+    {
         $client = new Season(cache: $this->cache);
         $this->assertObjectHasAttribute('season', $client->index());
     }
@@ -19,7 +20,8 @@ final class SeasonTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testSeasonGet() {
+    public function testSeasonGet()
+    {
         $client = new Season(cache: $this->cache);
         $this->assertObjectHasAttribute('leaderboard', $client->get(1));
     }
@@ -27,7 +29,8 @@ final class SeasonTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testSeasonLeaderboard() {
+    public function testSeasonLeaderboard()
+    {
         $client = new Season(cache: $this->cache);
         $this->assertObjectHasAttribute('row', $client->leaderboard(1, 'rift-barbarian'));
     }

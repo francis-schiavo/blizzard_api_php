@@ -12,7 +12,7 @@ This library requires PHP 8.1 or newer with the following modules:
 * curl
 * redis (Only if using the Redis cache interface)
 
-You can add this library to your compose project by adding 
+You can add this library to your compose project by adding
 `francis-schiavo/blizzard_api` as a requirement on your `compose.json`.
 
 or from the command line:
@@ -66,7 +66,7 @@ $data = $api_client->index();
 
 ## Advanced search interface
 
-For some WoW endpoints there is a `search` method available, you can easily 
+For some WoW endpoints there is a `search` method available, you can easily
 compose a valid query as shown here:
 
 ```php

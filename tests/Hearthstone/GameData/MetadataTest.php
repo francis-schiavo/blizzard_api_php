@@ -3,15 +3,16 @@
 namespace BlizzardApi\Tests\Hearthstone\GameData;
 
 use BlizzardApi\ApiException;
-use BlizzardApi\Tests\ApiTestCase;
 use BlizzardApi\Hearthstone\GameData\Metadata;
+use BlizzardApi\Tests\ApiTestCase;
 
 final class MetadataTest extends ApiTestCase
 {
     /**
      * @throws ApiException
      */
-    public function testMetadataIndex() {
+    public function testMetadataIndex()
+    {
         $client = new Metadata(cache: $this->cache);
         $this->assertObjectHasAttribute('sets', $client->index());
     }
@@ -19,7 +20,8 @@ final class MetadataTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testMetadataGet() {
+    public function testMetadataGet()
+    {
         $client = new Metadata(cache: $this->cache);
         $this->assertIsArray($client->get('sets'));
     }

@@ -4,8 +4,8 @@ namespace BlizzardApi\Diablo\Community;
 
 use BlizzardApi\ApiException;
 use BlizzardApi\Cache\CacheDuration;
-use BlizzardApi\Enumerators\BaseURL;
 use BlizzardApi\Diablo\Request;
+use BlizzardApi\Enumerators\BaseURL;
 use stdClass;
 
 class Artisan extends Request

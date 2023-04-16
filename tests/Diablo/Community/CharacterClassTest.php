@@ -1,17 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace BlizzardApi\Tests\Diablo\GameData;
+namespace BlizzardApi\Tests\Diablo\Community;
 
 use BlizzardApi\ApiException;
-use BlizzardApi\Tests\ApiTestCase;
 use BlizzardApi\Diablo\Community\CharacterClass;
+use BlizzardApi\Tests\ApiTestCase;
 
 final class CharacterClassTest extends ApiTestCase
 {
     /**
      * @throws ApiException
      */
-    public function testCharacterClassIndex() {
+    public function testCharacterClassIndex()
+    {
         $client = new CharacterClass(cache: $this->cache);
         $this->assertObjectHasAttribute('skillCategories', $client->get('barbarian'));
     }
@@ -19,7 +20,8 @@ final class CharacterClassTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testCharacterClassGet() {
+    public function testCharacterClassGet()
+    {
         $client = new CharacterClass(cache: $this->cache);
         $this->assertObjectHasAttribute('skill', $client->skill('barbarian', 'bash'));
     }

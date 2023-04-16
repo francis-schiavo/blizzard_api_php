@@ -36,7 +36,7 @@ class Spell extends GenericDataEndpoint
         return $this->apiRequest("{$this->baseUrl(BaseURL::media)}/spell/$id", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::static;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

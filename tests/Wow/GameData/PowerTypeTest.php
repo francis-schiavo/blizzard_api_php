@@ -11,7 +11,8 @@ final class PowerTypeTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testPlayableClassIndex() {
+    public function testPlayableClassIndex()
+    {
         $client = new PowerType(cache: $this->cache);
         $this->assertObjectHasAttribute('power_types', $client->index());
     }

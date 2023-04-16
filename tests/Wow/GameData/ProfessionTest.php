@@ -3,7 +3,6 @@
 namespace BlizzardApi\Tests\Wow\GameData;
 
 use BlizzardApi\ApiException;
-use BlizzardApi\Enumerators\EndpointVersion;
 use BlizzardApi\Tests\ApiTestCase;
 use BlizzardApi\Wow\GameData\Profession;
 
@@ -12,7 +11,8 @@ final class ProfessionTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testProfessionIndex() {
+    public function testProfessionIndex()
+    {
         $client = new Profession(cache: $this->cache);
         $this->assertObjectHasAttribute('professions', $client->index());
     }
@@ -32,7 +32,7 @@ final class ProfessionTest extends ApiTestCase
     public function testProfessionMedia(): void
     {
         $client = new Profession(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/trade_blacksmithing.jpg', $client->media(164)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/ui_profession_blacksmithing.jpg', $client->media(164)->assets[0]->value);
     }
 
     /**
@@ -59,6 +59,6 @@ final class ProfessionTest extends ApiTestCase
     public function testRecipeMedia(): void
     {
         $client = new Profession(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/inv_stone_sharpeningstone_01.jpg', $client->recipeMedia(1631)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/inv_stone_sharpeningstone_01.jpg', $client->recipeMedia(1631)->assets[0]->value);
     }
 }

@@ -7,7 +7,7 @@ use BlizzardApi\Enumerators\EndpointNamespace;
 
 class Region extends GenericDataEndpoint
 {
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::dynamic;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

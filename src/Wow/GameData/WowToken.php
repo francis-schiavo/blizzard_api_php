@@ -4,7 +4,6 @@ namespace BlizzardApi\Wow\GameData;
 
 use BlizzardApi\Cache\CacheDuration;
 use BlizzardApi\Enumerators\EndpointNamespace;
-use BlizzardApi\Wow\Request;
 use Error;
 use stdClass;
 
@@ -20,7 +19,7 @@ class WowToken extends GenericDataEndpoint
         throw new Error('The WowToken endpoint does not have a get method.');
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::dynamic;
         $this->ttl = CacheDuration::CACHE_HOUR->value;

@@ -78,7 +78,7 @@ class Quest extends GenericDataEndpoint
         return $this->apiRequest("{$this->endpointUri()}/type/$id", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::static;
         $this->ttl = CacheDuration::CACHE_WEEK->value;

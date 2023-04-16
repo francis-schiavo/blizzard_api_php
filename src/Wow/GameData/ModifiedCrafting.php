@@ -15,7 +15,8 @@ class ModifiedCrafting extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function categories(array $options = []): stdClass {
+    public function categories(array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->baseUrl(BaseURL::game_data)}/modified-crafting/category/index", $this->defaultOptions($options));
     }
 
@@ -25,7 +26,8 @@ class ModifiedCrafting extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function category(int $id, array $options = []): stdClass {
+    public function category(int $id, array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->baseUrl(BaseURL::game_data)}/modified-crafting/category/$id", $this->defaultOptions($options));
     }
 
@@ -34,7 +36,8 @@ class ModifiedCrafting extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function slotTypes(array $options = []): stdClass {
+    public function slotTypes(array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->baseUrl(BaseURL::game_data)}/modified-crafting/reagent-slot-type/index", $this->defaultOptions($options));
     }
 
@@ -44,11 +47,12 @@ class ModifiedCrafting extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function slotType(int $id, array $options = []): stdClass {
+    public function slotType(int $id, array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->baseUrl(BaseURL::game_data)}/modified-crafting/reagent-slot-type/$id", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::static;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

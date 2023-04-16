@@ -1,17 +1,18 @@
 <?php declare(strict_types=1);
 
-namespace BlizzardApi\Tests\Diablo\GameData;
+namespace BlizzardApi\Tests\Diablo\Community;
 
 use BlizzardApi\ApiException;
-use BlizzardApi\Tests\ApiTestCase;
 use BlizzardApi\Diablo\Community\Act;
+use BlizzardApi\Tests\ApiTestCase;
 
 final class ActTest extends ApiTestCase
 {
     /**
      * @throws ApiException
      */
-    public function testActIndex() {
+    public function testActIndex()
+    {
         $client = new Act(cache: $this->cache);
         $this->assertObjectHasAttribute('acts', $client->index());
     }
@@ -19,7 +20,8 @@ final class ActTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testActGet() {
+    public function testActGet()
+    {
         $client = new Act(cache: $this->cache);
         $this->assertObjectHasAttribute('quests', $client->get(1));
     }

@@ -19,6 +19,10 @@ final class GuildCrestTest extends ApiTestCase
         $this->assertCount(6, $data->borders);
         $this->assertCount(196, $data->emblems);
 
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $data = $client->index(['version' => EndpointVersion::classic]);
         $this->assertCount(6, $data->borders);
     }
@@ -31,9 +35,13 @@ final class GuildCrestTest extends ApiTestCase
         $client = new GuildCrest(cache: $this->cache);
 
         $this->assertEquals(
-            'https://render-us.worldofwarcraft.com/guild/tabards/border_00.png',
+            'https://render.worldofwarcraft.com/us/guild/tabards/border_00.png',
             $client->borderMedia(0)->assets[0]->value
         );
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
 
         $this->assertEquals(
             'https://render.worldofwarcraft.com/classic-us/guild/tabards/border_00.png',
@@ -49,9 +57,13 @@ final class GuildCrestTest extends ApiTestCase
         $client = new GuildCrest(cache: $this->cache);
 
         $this->assertEquals(
-            'https://render-us.worldofwarcraft.com/guild/tabards/emblem_00.png',
+            'https://render.worldofwarcraft.com/us/guild/tabards/emblem_00.png',
             $client->emblemMedia(0)->assets[0]->value
         );
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
 
         $this->assertEquals(
             'https://render.worldofwarcraft.com/classic-us/guild/tabards/emblem_00.png',

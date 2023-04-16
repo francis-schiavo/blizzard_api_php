@@ -2,7 +2,8 @@
 
 namespace BlizzardApi\Cache;
 
-enum CacheDuration: int {
+enum CacheDuration: int
+{
     # One minute Cache
     case CACHE_MINUTE = 60;
     # One hour Cache

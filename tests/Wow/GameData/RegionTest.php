@@ -12,7 +12,8 @@ final class RegionTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testPlayableClassIndex() {
+    public function testPlayableClassIndex()
+    {
         $client = new Region(cache: $this->cache);
 
         $this->assertObjectHasAttribute('regions', $client->index());

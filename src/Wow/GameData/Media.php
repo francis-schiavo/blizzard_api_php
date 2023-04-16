@@ -31,7 +31,7 @@ class Media extends GenericDataEndpoint
         throw new Error('The Media endpoint does not have an index method.');
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::static;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

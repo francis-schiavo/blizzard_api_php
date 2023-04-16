@@ -6,7 +6,6 @@ use BlizzardApi\ApiException;
 use BlizzardApi\Cache\CacheDuration;
 use BlizzardApi\Enumerators\BaseURL;
 use BlizzardApi\Enumerators\EndpointNamespace;
-use BlizzardApi\Enumerators\EndpointVersion;
 use stdClass;
 
 class PvpTier extends GenericDataEndpoint
@@ -23,7 +22,7 @@ class PvpTier extends GenericDataEndpoint
         return $this->apiRequest("{$this->baseUrl(BaseURL::media)}/pvp-tier/$id", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::static;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

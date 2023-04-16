@@ -30,7 +30,7 @@ class Cardback extends Request
      * @return stdClass
      * @throws ApiException
      */
-    public function get(string|int $idOrSlug, array $options = [], ): stdClass
+    public function get(string|int $idOrSlug, array $options = []): stdClass
     {
         return $this->apiRequest(
             "{$this->baseUrl(BaseURL::community)}/cardbacks/$idOrSlug",

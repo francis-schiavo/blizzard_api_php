@@ -4,7 +4,6 @@ namespace BlizzardApi\Tests\Wow\Profile;
 
 use BlizzardApi\ApiException;
 use BlizzardApi\Tests\ApiTestCase;
-use BlizzardApi\Wow\Profile\CharacterProfile;
 use BlizzardApi\Wow\Profile\Guild;
 
 final class GuildTest extends ApiTestCase

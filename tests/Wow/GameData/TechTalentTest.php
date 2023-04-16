@@ -4,7 +4,6 @@ namespace BlizzardApi\Tests\Wow\GameData;
 
 use BlizzardApi\ApiException;
 use BlizzardApi\Tests\ApiTestCase;
-use BlizzardApi\Wow\GameData\Spell;
 use BlizzardApi\Wow\GameData\TechTalent;
 
 final class TechTalentTest extends ApiTestCase
@@ -12,7 +11,8 @@ final class TechTalentTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testTalentIndex() {
+    public function testTalentIndex()
+    {
         $client = new TechTalent(cache: $this->cache);
         $this->assertObjectHasAttribute('talents', $client->index());
     }
@@ -20,7 +20,8 @@ final class TechTalentTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testTalentGet() {
+    public function testTalentGet()
+    {
         $client = new TechTalent(cache: $this->cache);
         $this->assertEquals('Run Without Tiring', $client->get(863)->name->en_US);
     }
@@ -31,13 +32,14 @@ final class TechTalentTest extends ApiTestCase
     public function testTechTalentMedia(): void
     {
         $client = new TechTalent(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/ability_racial_runningwild.jpg', $client->media(863)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/ability_racial_runningwild.jpg', $client->media(863)->assets[0]->value);
     }
 
     /**
      * @throws ApiException
      */
-    public function testTechTalentTrees() {
+    public function testTechTalentTrees()
+    {
         $client = new TechTalent(cache: $this->cache);
         $this->assertObjectHasAttribute('talent_trees', $client->trees());
     }
@@ -45,7 +47,8 @@ final class TechTalentTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testTechTalentTree() {
+    public function testTechTalentTree()
+    {
         $client = new TechTalent(cache: $this->cache);
         $this->assertEquals(12, $client->tree(275)->max_tiers);
     }

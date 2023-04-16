@@ -11,7 +11,8 @@ final class PetTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testPetIndex() {
+    public function testPetIndex()
+    {
         $client = new Pet(cache: $this->cache);
         $this->assertObjectHasAttribute('pets', $client->index());
     }
@@ -31,13 +32,14 @@ final class PetTest extends ApiTestCase
     public function testPetMedia(): void
     {
         $client = new Pet(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/inv_pet_mechanicalsquirrel.jpg', $client->media(39)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/inv_pet_mechanicalsquirrel.jpg', $client->media(39)->assets[0]->value);
     }
 
     /**
      * @throws ApiException
      */
-    public function testPetAbilityIndex() {
+    public function testPetAbilityIndex()
+    {
         $client = new Pet(cache: $this->cache);
         $this->assertObjectHasAttribute('abilities', $client->abilities());
     }
@@ -57,6 +59,6 @@ final class PetTest extends ApiTestCase
     public function testPetAbilityMedia(): void
     {
         $client = new Pet(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/ability_druid_ferociousbite.jpg', $client->abilityMedia(110)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/ability_druid_ferociousbite.jpg', $client->abilityMedia(110)->assets[0]->value);
     }
 }

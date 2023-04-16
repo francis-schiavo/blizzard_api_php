@@ -31,7 +31,7 @@ class Card extends Request
      * @return stdClass
      * @throws ApiException
      */
-    public function get(string|int $idOrSlug, string $gameMode = 'constructed', array $options = [], ): stdClass
+    public function get(string|int $idOrSlug, string $gameMode = 'constructed', array $options = []): stdClass
     {
         return $this->apiRequest(
             "{$this->baseUrl(BaseURL::community)}/cards/$idOrSlug",

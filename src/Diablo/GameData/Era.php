@@ -6,7 +6,7 @@ use BlizzardApi\Cache\CacheDuration;
 
 class Era extends GenericDataEndpoint
 {
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;
         $this->endpoint = 'era';

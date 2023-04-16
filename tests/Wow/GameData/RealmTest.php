@@ -40,11 +40,11 @@ final class RealmTest extends ApiTestCase
     {
         $client = new Realm(cache: $this->cache);
 
-        $this->assertCount(2, $client->search(function($searchOptions) {
+        $this->assertCount(2, $client->search(function ($searchOptions) {
             $searchOptions->where('name.en_US', ['Azralon', 'Nemesis']);
         })->results);
 
-        $this->assertCount(2, $client->search(function($searchOptions) {
+        $this->assertCount(2, $client->search(function ($searchOptions) {
             $searchOptions->where('name.en_US', ['Mankrik', 'Pagle']);
         }, options: ['version' => EndpointVersion::classic])->results);
     }

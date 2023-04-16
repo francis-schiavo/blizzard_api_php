@@ -2,13 +2,13 @@
 
 namespace BlizzardApi;
 
-use BlizzardApi\Enumerators\EndpointVersion;
-use BlizzardApi\Enumerators\Region;
+use BlizzardApi\Cache\ICacheProvider;
 use BlizzardApi\Enumerators\BaseURL;
 use BlizzardApi\Enumerators\EndpointNamespace;
-use BlizzardApi\Enumerators\OAuth2Scope;
+use BlizzardApi\Enumerators\EndpointVersion;
 use BlizzardApi\Enumerators\Game;
-use BlizzardApi\Cache\ICacheProvider;
+use BlizzardApi\Enumerators\OAuth2Scope;
+use BlizzardApi\Enumerators\Region;
 use Exception;
 use stdClass;
 
@@ -37,7 +37,7 @@ class Request
     /**
      * Creates an interface for calling API Endpoints
      * @param Region|null $region One of the supported API regions: Region::US, REGION_EU, REGION_KO or REGION_TW
-     * @param string|null $accessToken Allow to specify a access_token for the requests, useful for specifying a
+     * @param string|null $accessToken Allow to specify an access_token for the requests, useful for specifying a
      *   token obtained using authorization_code flow.
      * @param ICacheProvider|null $cache An implementation of ICacheProvider
      * @throws ApiException In case a token cannot be obtained.
@@ -97,32 +97,13 @@ class Request
     }
 
     /**
-     * @param BaseURL $scope API scope to apply the base URL
-     * @return string Base URL to call endpoints
-     */
-    protected function baseUrl(BaseURL $scope): string
-    {
-        return sprintf($scope->value, $this->region->value, $this->game->value);
-    }
-
-    /**
-     * @param EndpointNamespace $namespace The endpoint namespace
-     * @param EndpointVersion $version The desired version of the endpoint
-     * @return string The appropriate namespace for the endpoint namespace, version and region
-     */
-    protected function endpointNamespace(EndpointNamespace $namespace, EndpointVersion $version = EndpointVersion::retail): string
-    {
-        return sprintf($namespace->value, sprintf($version->value, $this->region->value));
-    }
-
-    /**
      * Used to create a new access token using the OAuth2
      * Api client and secret must be configured using the BlizzardAPi\Config class.
      *
      * If the argument $code is provided the authorization code flow will be used:
      * @see https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow
      *
-     * If no $code argument is provided a access token will be created using the client credentials flow
+     * If no $code argument is provided an access token will be created using the client credentials flow
      * @see https://develop.battle.net/documentation/guides/using-oauth/client-credentials-flow
      *
      * @param string|null $code An optional authorization code
@@ -166,13 +147,22 @@ class Request
     }
 
     /**
+     * @param BaseURL $scope API scope to apply the base URL
+     * @return string Base URL to call endpoints
+     */
+    protected function baseUrl(BaseURL $scope): string
+    {
+        return sprintf($scope->value, $this->region->value, $this->game->value);
+    }
+
+    /**
      * Creates a valid url for authorizing a user using BNet OAuth2 provider for the current region.
      * @see https://develop.battle.net/documentation/guides/using-oauth/authorization-code-flow
      *
      * @param OAuth2Scope ...$scopes The desired OAuth2 scopes.
      * @return string The url for the login button.
      */
-    #[Pure] public function authorizationURL(OAuth2Scope ...$scopes): string
+    public function authorizationURL(OAuth2Scope ...$scopes): string
     {
         $queryString = http_build_query([
             'auth_flow' => 'auth_code',
@@ -182,24 +172,6 @@ class Request
             'redirect_uri' => Configuration::$redirectURI
         ]);
         return sprintf("%s?%s", $this->baseUrl(BaseURL::oauth_auth), $queryString);
-    }
-
-    /**
-     * @param string $url The endpoint URL
-     * @param array $options Options and additional query string parameters
-     * @return string Well formed URL
-     */
-    protected function prepareURL(string $url, array $options): string
-    {
-        $queryString = $this->extractQueryString($options);
-        if ($queryString) {
-            if (str_contains($url, '?')) {
-                $url .= "&$queryString";
-            } else {
-                $url .= "?$queryString";
-            }
-        }
-        return $url;
     }
 
     /**
@@ -231,6 +203,24 @@ class Request
     }
 
     /**
+     * @param string $url The endpoint URL
+     * @param array $options Options and additional query string parameters
+     * @return string Well formed URL
+     */
+    protected function prepareURL(string $url, array $options): string
+    {
+        $queryString = $this->extractQueryString($options);
+        if ($queryString) {
+            if (str_contains($url, '?')) {
+                $url .= "&$queryString";
+            } else {
+                $url .= "?$queryString";
+            }
+        }
+        return $url;
+    }
+
+    /**
      * @param array $options An array containing options for a single request
      * @return string The query string params for this request
      */
@@ -252,6 +242,16 @@ class Request
 
         $options = array_intersect_key($options, $defaultOptions);
         return http_build_query($queryString);
+    }
+
+    /**
+     * @param EndpointNamespace $namespace The endpoint namespace
+     * @param EndpointVersion $version The desired version of the endpoint
+     * @return string The appropriate namespace for the endpoint namespace, version and region
+     */
+    protected function endpointNamespace(EndpointNamespace $namespace, EndpointVersion $version = EndpointVersion::retail): string
+    {
+        return sprintf($namespace->value, sprintf($version->value, $this->region->value));
     }
 
     /**

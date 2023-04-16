@@ -41,6 +41,37 @@ class Composer
     }
 
     /**
+     * @param string|int|array $value
+     * @return string
+     */
+    private function resolve_value(string|int|array $value): string
+    {
+        if (is_array($value)) {
+            return implode('||', $value);
+        } else {
+            return "$value";
+        }
+    }
+
+    /**
+     * @param string|int|null $min Minimum value
+     * @param string|int|null $max Maximum value
+     * @param bool $inclusive If true range will include min and max values
+     * @return string
+     */
+    private function resolve_range(string|int|null $min, string|int|null $max, bool $inclusive): string
+    {
+        $min = $min ?: '';
+        $max = $max ?: '';
+
+        if ($inclusive) {
+            return "[$min,$max]";
+        } else {
+            return "($min,$max)";
+        }
+    }
+
+    /**
      * @param string $field The field to query
      * @param string|int|array|null $value A value or array of values
      * @param bool $inclusive When using a range determines if min and max values must be included in the result
@@ -73,37 +104,6 @@ class Composer
     {
         $this->order[] = "$field:$direction->value";
         return $this;
-    }
-
-    /**
-     * @param string|int|array $value
-     * @return string
-     */
-    private function resolve_value(string|int|array $value): string
-    {
-        if (is_array($value)) {
-            return implode('||', $value);
-        } else {
-            return "$value";
-        }
-    }
-
-    /**
-     * @param string|int|null $min Minimum value
-     * @param string|int|null $max Maximum value
-     * @param bool $inclusive If true range will include min and max values
-     * @return string
-     */
-    private function resolve_range(string|int|null $min, string|int|null $max, bool $inclusive): string
-    {
-        $min = $min ?: '';
-        $max = $max ?: '';
-
-        if ($inclusive) {
-            return "[$min,$max]";
-        } else {
-            return "($min,$max)";
-        }
     }
 
     /**

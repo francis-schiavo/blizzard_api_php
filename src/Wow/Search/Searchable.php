@@ -16,7 +16,8 @@ trait Searchable
      * @return stdClass
      * @throws ApiException
      */
-    public function search(callable|null $searchComposer, int $page = 1, int $pageSize = 100, array $options = []): stdClass {
+    public function search(callable|null $searchComposer, int $page = 1, int $pageSize = 100, array $options = []): stdClass
+    {
         $searchOptions = new Composer($page, $pageSize);
         if (isset($searchComposer)) {
             $searchComposer($searchOptions);

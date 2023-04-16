@@ -14,7 +14,7 @@ final class MediaTest extends ApiTestCase
     public function testMediaSearch(): void
     {
         $client = new Media(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/inv_sword_04.jpg', $client->search(function($searchOptions) {
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/inv_sword_04.jpg', $client->search(function ($searchOptions) {
             $searchOptions->where('tags', 'item')->order_by('id');
         })->results[0]->data->assets[0]->value);
     }

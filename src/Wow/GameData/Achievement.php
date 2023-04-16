@@ -3,9 +3,9 @@
 namespace BlizzardApi\Wow\GameData;
 
 use BlizzardApi\ApiException;
+use BlizzardApi\Cache\CacheDuration;
 use BlizzardApi\Enumerators\BaseURL;
 use BlizzardApi\Enumerators\EndpointNamespace;
-use BlizzardApi\Cache\CacheDuration;
 use stdClass;
 
 class Achievement extends GenericDataEndpoint
@@ -16,9 +16,10 @@ class Achievement extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-  public function categories(array $options = []): stdClass {
-    return $this->apiRequest("{$this->endpointUri('category')}/index", $this->defaultOptions($options));
-  }
+    public function categories(array $options = []): stdClass
+    {
+        return $this->apiRequest("{$this->endpointUri('category')}/index", $this->defaultOptions($options));
+    }
 
     /**
      * Returns an Achievement Category by ID
@@ -27,9 +28,10 @@ class Achievement extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-  public function category(int $id, array $options = []): stdClass {
-    return $this->apiRequest("{$this->endpointUri('category')}/$id", $this->defaultOptions($options));
-  }
+    public function category(int $id, array $options = []): stdClass
+    {
+        return $this->apiRequest("{$this->endpointUri('category')}/$id", $this->defaultOptions($options));
+    }
 
     /**
      * Returns media for an Achievement by ID
@@ -38,13 +40,15 @@ class Achievement extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-  public function media(int $id, array $options = []): stdClass {
-    return $this->apiRequest("{$this->baseUrl(BaseURL::media)}/achievement/$id", $this->defaultOptions($options));
-  }
+    public function media(int $id, array $options = []): stdClass
+    {
+        return $this->apiRequest("{$this->baseUrl(BaseURL::media)}/achievement/$id", $this->defaultOptions($options));
+    }
 
-  protected function endpointSetup($options = []) {
-    $this->namespace = EndpointNamespace::static;
-    $this->ttl = CacheDuration::CACHE_TRIMESTER->value;
-    $this->endpoint = 'achievement';
-  }
+    protected function endpointSetup($options = []): void
+    {
+        $this->namespace = EndpointNamespace::static;
+        $this->ttl = CacheDuration::CACHE_TRIMESTER->value;
+        $this->endpoint = 'achievement';
+    }
 }

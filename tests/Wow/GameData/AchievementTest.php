@@ -53,6 +53,6 @@ final class AchievementTest extends ApiTestCase
     public function testAchievementMedia(): void
     {
         $client = new Achievement(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/achievement_level_10.jpg', $client->media(6)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/achievement_level_10.jpg', $client->media(6)->assets[0]->value);
     }
 }

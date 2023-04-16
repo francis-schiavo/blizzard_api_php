@@ -3,11 +3,11 @@
 namespace BlizzardApi\Wow\GameData;
 
 use BlizzardApi\ApiException;
-use BlizzardApi\Enumerators\EndpointVersion;
-use BlizzardApi\Enumerators\Region;
+use BlizzardApi\Cache\ICacheProvider;
 use BlizzardApi\Enumerators\BaseURL;
 use BlizzardApi\Enumerators\EndpointNamespace;
-use BlizzardApi\Cache\ICacheProvider;
+use BlizzardApi\Enumerators\EndpointVersion;
+use BlizzardApi\Enumerators\Region;
 use BlizzardApi\Wow\Request;
 use stdClass;
 
@@ -40,7 +40,7 @@ abstract class GenericDataEndpoint extends Request
         $this->endpointSetup();
     }
 
-    protected abstract function endpointSetup();
+    protected abstract function endpointSetup(): void;
 
     /**
      * @param array $options

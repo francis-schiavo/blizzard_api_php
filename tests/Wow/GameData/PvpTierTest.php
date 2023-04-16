@@ -11,7 +11,8 @@ final class PvpTierTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testPvpSeasonIndex() {
+    public function testPvpSeasonIndex()
+    {
         $client = new PvpTier(cache: $this->cache);
         $this->assertObjectHasAttribute('tiers', $client->index());
     }
@@ -28,9 +29,10 @@ final class PvpTierTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testPvpSeasonLeaderboards() {
+    public function testPvpSeasonLeaderboards()
+    {
         $client = new PvpTier(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/ui_rankedpvp_01.jpg', $client->media( 1)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/ui_rankedpvp_01.jpg', $client->media(1)->assets[0]->value);
     }
 
 }

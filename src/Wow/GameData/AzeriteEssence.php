@@ -26,7 +26,7 @@ class AzeriteEssence extends GenericDataEndpoint
         return $this->apiRequest("{$this->baseUrl(BaseURL::media)}/azerite-essence/$id", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::static;
         $this->ttl = CacheDuration::CACHE_HOUR->value;

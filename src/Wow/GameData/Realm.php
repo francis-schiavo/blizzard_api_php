@@ -24,7 +24,7 @@ class Realm extends GenericDataEndpoint
         return $this->apiRequest($url, $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::dynamic;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

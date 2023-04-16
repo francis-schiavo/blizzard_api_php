@@ -11,7 +11,8 @@ final class WowTokenTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testWowTokenIndex() {
+    public function testWowTokenIndex()
+    {
         $client = new WowToken(cache: $this->cache);
         $this->assertObjectHasAttribute('price', $client->index());
     }

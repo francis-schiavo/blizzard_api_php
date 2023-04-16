@@ -40,7 +40,8 @@ class MythicKeystone extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function dungeons(array $options = []) {
+    public function dungeons(array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->endpointUri()}/dungeon/index", $this->defaultOptions($options));
     }
 
@@ -50,7 +51,8 @@ class MythicKeystone extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function dungeon(int $id, array $options = []) {
+    public function dungeon(int $id, array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->endpointUri()}/dungeon/$id", $this->defaultOptions($options));
     }
 
@@ -59,7 +61,8 @@ class MythicKeystone extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function periods(array $options = []) {
+    public function periods(array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->endpointUri()}/period/index", $this->defaultOptions($options));
     }
 
@@ -69,7 +72,8 @@ class MythicKeystone extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function period(int $id, array $options = []) {
+    public function period(int $id, array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->endpointUri()}/period/$id", $this->defaultOptions($options));
     }
 
@@ -78,7 +82,8 @@ class MythicKeystone extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function seasons(array $options = []) {
+    public function seasons(array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->endpointUri()}/season/index", $this->defaultOptions($options));
     }
 
@@ -88,11 +93,12 @@ class MythicKeystone extends GenericDataEndpoint
      * @return stdClass
      * @throws ApiException
      */
-    public function season(int $id, array $options = []) {
+    public function season(int $id, array $options = []): stdClass
+    {
         return $this->apiRequest("{$this->endpointUri()}/season/$id", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::dynamic;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

@@ -3,6 +3,7 @@
 namespace BlizzardApi\Cache;
 
 use Redis;
+use RedisException;
 
 class RedisCache implements ICacheProvider
 {
@@ -25,6 +26,8 @@ class RedisCache implements ICacheProvider
      * @param string $url Resource URL
      * @param string|null $data Buffer
      * @return bool When true the buffer contains the cached data
+     * @throws RedisException
+     * @throws RedisException
      */
     public function retrieve(string $url, string|null &$data): bool
     {
@@ -36,6 +39,8 @@ class RedisCache implements ICacheProvider
      * @param string $url Resource URL
      * @param string $data Resource data
      * @param int $ttl Cache duration in seconds
+     * @throws RedisException
+     * @throws RedisException
      */
     public function store(string $url, string $data, int $ttl): bool
     {

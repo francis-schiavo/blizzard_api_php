@@ -3,15 +3,16 @@
 namespace BlizzardApi\Tests\Hearthstone\GameData;
 
 use BlizzardApi\ApiException;
-use BlizzardApi\Tests\ApiTestCase;
 use BlizzardApi\Hearthstone\GameData\Card;
+use BlizzardApi\Tests\ApiTestCase;
 
 final class CardTest extends ApiTestCase
 {
     /**
      * @throws ApiException
      */
-    public function testCardSearch() {
+    public function testCardSearch()
+    {
         $client = new Card(cache: $this->cache);
         $searchOptions = [
             'set' => 'rise-of-shadows', 'class' => 'mage', 'mana_cost' => 10, 'attack' => 4, 'health' => 10,
@@ -27,7 +28,8 @@ final class CardTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testCardGet() {
+    public function testCardGet()
+    {
         $client = new Card(cache: $this->cache);
         $this->assertObjectHasAttribute('slug', $client->get(254));
     }

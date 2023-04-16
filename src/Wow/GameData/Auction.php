@@ -21,7 +21,7 @@ class Auction extends GenericDataEndpoint
     }
 
     /**
-     * Returns Returns all active auctions for a connected realm
+     * Returns all active auctions for a connected realm
      * @param int $id The ID of the connected realm
      * @param array $options Request options
      * @return stdClass
@@ -33,7 +33,7 @@ class Auction extends GenericDataEndpoint
     }
 
     /**
-     * Returns Returns all active commodity auctions for a region
+     * Returns all active commodity auctions for a region
      * @param array $options Request options
      * @return stdClass
      * @throws ApiException
@@ -43,7 +43,7 @@ class Auction extends GenericDataEndpoint
         return $this->apiRequest("{$this->baseUrl(BaseURL::game_data)}/auctions/commodities", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup($options = [])
+    protected function endpointSetup($options = []): void
     {
         $this->namespace = EndpointNamespace::dynamic;
         $this->ttl = CacheDuration::CACHE_HOUR->value;

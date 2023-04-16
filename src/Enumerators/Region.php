@@ -12,7 +12,8 @@ enum Region: string
     /**
      * @return int
      */
-    public function id(): int {
+    public function id(): int
+    {
         return match ($this) {
             Region::US => 1,
             Region::EU => 2,

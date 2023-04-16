@@ -34,7 +34,7 @@ class PlayableClass extends GenericDataEndpoint
         return $this->apiRequest("{$this->endpointUri()}/$id/pvp-talent-slots", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::static;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

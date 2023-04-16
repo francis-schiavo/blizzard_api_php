@@ -3,7 +3,6 @@
 namespace BlizzardApi\Tests\Wow\GameData;
 
 use BlizzardApi\ApiException;
-use BlizzardApi\Enumerators\EndpointVersion;
 use BlizzardApi\Tests\ApiTestCase;
 use BlizzardApi\Wow\GameData\ModifiedCrafting;
 
@@ -54,6 +53,6 @@ final class ModifiedCraftingTest extends ApiTestCase
     public function testModifiedCraftingSlotType(): void
     {
         $client = new ModifiedCrafting(cache: $this->cache);
-        $this->assertEquals('Set Item Level', $client->slotType(16)->description->en_US);
+        $this->assertEquals('Modify Item Level - Major', $client->slotType(16)->description->en_US);
     }
 }

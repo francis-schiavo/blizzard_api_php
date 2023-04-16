@@ -23,6 +23,11 @@ class PvpRegion extends GenericDataEndpoint
         return $this->apiRequest("{$this->endpointUri()}/$region_id/pvp-season/index", $this->defaultOptions($options));
     }
 
+    protected function defaultOptions($options = []): array
+    {
+        return array_merge(['namespace' => $this->namespace, 'version' => EndpointVersion::classic, 'ttl' => $this->ttl], $options);
+    }
+
     /**
      * Returns a seasons within a region
      * @param int $region_id The ID of the region
@@ -76,15 +81,10 @@ class PvpRegion extends GenericDataEndpoint
         return $this->apiRequest("{$this->endpointUri()}/$region_id/pvp-season/$season_id/pvp-reward/index", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::dynamic;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;
         $this->endpoint = 'pvp-region';
-    }
-
-    protected function defaultOptions($options = []): array
-    {
-        return array_merge(['namespace' => $this->namespace, 'version' => EndpointVersion::classic, 'ttl' => $this->ttl], $options);
     }
 }

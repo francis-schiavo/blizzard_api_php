@@ -10,7 +10,7 @@ class ConnectedRealm extends GenericDataEndpoint
 {
     use Searchable;
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::dynamic;
         $this->ttl = CacheDuration::CACHE_MONTH->value;

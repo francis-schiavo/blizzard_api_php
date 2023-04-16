@@ -10,10 +10,10 @@ class Mount extends GenericDataEndpoint
 {
     use Searchable;
 
-  protected function endpointSetup()
-  {
-      $this->namespace = EndpointNamespace::static;
-      $this->ttl = CacheDuration::CACHE_TRIMESTER->value;
-      $this->endpoint = 'mount';
-  }
+    protected function endpointSetup(): void
+    {
+        $this->namespace = EndpointNamespace::static;
+        $this->ttl = CacheDuration::CACHE_TRIMESTER->value;
+        $this->endpoint = 'mount';
+    }
 }

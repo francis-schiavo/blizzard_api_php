@@ -4,10 +4,8 @@ namespace BlizzardApi\Starcraft\GameData;
 
 use BlizzardApi\ApiException;
 use BlizzardApi\Cache\CacheDuration;
-use BlizzardApi\Enumerators\Region;
-use BlizzardApi\Enumerators\BaseURL;
-use BlizzardApi\Cache\ICacheProvider;
 use BlizzardApi\Diablo\Request;
+use BlizzardApi\Enumerators\BaseURL;
 use stdClass;
 
 abstract class League extends Request

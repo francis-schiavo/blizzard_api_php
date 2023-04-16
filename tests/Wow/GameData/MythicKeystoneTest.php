@@ -35,7 +35,7 @@ final class MythicKeystoneTest extends ApiTestCase
     public function testMythicKeystoneDungeon(): void
     {
         $client = new MythicKeystone(cache: $this->cache);
-        $this->assertEquals('Mists of Tirna Scithe', $client->dungeon(375)->name->en_US);
+        $this->assertEquals('Temple of the Jade Serpent', $client->dungeon(2)->name->en_US);
     }
 
     /**

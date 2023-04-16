@@ -32,6 +32,6 @@ final class MythicKeystoneAffixTest extends ApiTestCase
     public function testMythicKeystoneAffixMedia(): void
     {
         $client = new MythicKeystoneAffix(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/inv_misc_volatilewater.jpg', $client->media(1)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/inv_misc_volatilewater.jpg', $client->media(1)->assets[0]->value);
     }
 }

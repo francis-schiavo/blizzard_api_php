@@ -11,7 +11,8 @@ final class ReputationTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testReputationFactions() {
+    public function testReputationFactions()
+    {
         $client = new Reputation(cache: $this->cache);
         $this->assertObjectHasAttribute('factions', $client->factions());
     }
@@ -28,7 +29,8 @@ final class ReputationTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testReputationTiers() {
+    public function testReputationTiers()
+    {
         $client = new Reputation(cache: $this->cache);
         $this->assertObjectHasAttribute('reputation_tiers', $client->tiers());
     }

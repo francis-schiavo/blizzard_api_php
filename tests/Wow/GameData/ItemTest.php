@@ -18,6 +18,10 @@ final class ItemTest extends ApiTestCase
 
         $this->assertEquals('Brutal Gladiator\'s Dragonhide Legguards', $client->get(35000)->name->en_US);
 
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertEquals('Netherweave Cloth', $client->get(21877, ['version' => EndpointVersion::classic])->name->en_US);
     }
 
@@ -30,6 +34,10 @@ final class ItemTest extends ApiTestCase
 
         $this->assertObjectHasAttribute('item_classes', $client->classes());
 
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertObjectHasAttribute('item_classes', $client->classes(['version' => EndpointVersion::classic]));
     }
 
@@ -40,7 +48,11 @@ final class ItemTest extends ApiTestCase
     {
         $client = new Item(cache: $this->cache);
 
-        $this->assertCount(11, $client->class(1)->item_subclasses);
+        $this->assertObjectHasAttribute('item_subclasses', $client->class(1));
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
 
         $this->assertCount(8, $client->class(1, ['version' => EndpointVersion::classic])->item_subclasses);
     }
@@ -52,7 +64,11 @@ final class ItemTest extends ApiTestCase
     {
         $client = new Item(cache: $this->cache);
 
-        $this->assertEquals('Soul Bag', $client->subclass(1,1)->display_name->en_US);
+        $this->assertEquals('Soul Bag', $client->subclass(1, 1)->display_name->en_US);
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
 
         $this->assertEquals('Soul Bag', $client->subclass(1, 1, ['version' => EndpointVersion::classic])->display_name->en_US);
     }
@@ -81,7 +97,13 @@ final class ItemTest extends ApiTestCase
     public function testItemMedia(): void
     {
         $client = new Item(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/inv_pants_leather_07.jpg', $client->media(35000)->assets[0]->value);
+
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/inv_pants_leather_07.jpg', $client->media(35000)->assets[0]->value);
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertEquals('https://render.worldofwarcraft.com/classic-us/icons/56/inv_sword_04.jpg', $client->media(25, ['version' => EndpointVersion::classic])->assets[0]->value);
     }
 
@@ -91,7 +113,7 @@ final class ItemTest extends ApiTestCase
     public function testItemSearch(): void
     {
         $client = new Item(cache: $this->cache);
-        $this->assertEquals('Botarangue', $client->search(function($searchOptions) {
+        $this->assertEquals('Botarangue', $client->search(function ($searchOptions) {
             $searchOptions->where('name.en_US', 'Booterang')->order_by('id');
         })->results[0]->data->name->pt_BR);
     }

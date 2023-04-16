@@ -12,10 +12,16 @@ final class PlayableClassTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testPlayableClassIndex() {
+    public function testPlayableClassIndex()
+    {
         $client = new PlayableClass(cache: $this->cache);
 
         $this->assertObjectHasAttribute('classes', $client->index());
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertObjectHasAttribute('classes', $client->index(['version' => EndpointVersion::classic]));
     }
 
@@ -27,6 +33,11 @@ final class PlayableClassTest extends ApiTestCase
         $client = new PlayableClass(cache: $this->cache);
 
         $this->assertEquals('Druid', $client->get(11)->name->en_US);
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertEquals('Druid', $client->get(11, ['version' => EndpointVersion::classic])->name->en_US);
     }
 
@@ -36,6 +47,6 @@ final class PlayableClassTest extends ApiTestCase
     public function testPlayableClassMedia(): void
     {
         $client = new PlayableClass(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/classicon_druid.jpg', $client->media(11)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/classicon_druid.jpg', $client->media(11)->assets[0]->value);
     }
 }

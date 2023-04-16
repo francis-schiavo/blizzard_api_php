@@ -6,7 +6,6 @@ use BlizzardApi\ApiException;
 use BlizzardApi\Cache\CacheDuration;
 use BlizzardApi\Enumerators\BaseURL;
 use BlizzardApi\Enumerators\EndpointNamespace;
-use Error;
 use stdClass;
 
 class Covenant extends GenericDataEndpoint
@@ -69,7 +68,7 @@ class Covenant extends GenericDataEndpoint
         return $this->apiRequest("{$this->baseUrl(BaseURL::media)}/covenant/$id", $this->defaultOptions($options));
     }
 
-    protected function endpointSetup()
+    protected function endpointSetup(): void
     {
         $this->namespace = EndpointNamespace::static;
         $this->ttl = CacheDuration::CACHE_TRIMESTER->value;

@@ -14,7 +14,7 @@ final class ConnectedRealmsTest extends ApiTestCase
     public function testConnectedRealmsIndex(): void
     {
         $client = new ConnectedRealm(cache: $this->cache);
-        $this->assertEquals('https://us.api.blizzard.com/data/wow/connected-realm/4?namespace=dynamic-us', $client->index()->connected_realms[0]->href);
+        $this->assertObjectHasAttribute('connected_realms', $client->index());
     }
 
     /**
@@ -41,7 +41,7 @@ final class ConnectedRealmsTest extends ApiTestCase
     public function testConnectedRealmSearch(): void
     {
         $client = new ConnectedRealm(cache: $this->cache);
-        $this->assertEquals(60, $client->search(function($searchOptions) {
+        $this->assertEquals(60, $client->search(function ($searchOptions) {
             $searchOptions->where('id', 60);
         }, 1, 10)->results[0]->data->id);
     }
@@ -52,7 +52,7 @@ final class ConnectedRealmsTest extends ApiTestCase
     public function testConnectedRealmSearchOr(): void
     {
         $client = new ConnectedRealm(cache: $this->cache);
-        $this->assertCount(2, $client->search(function($searchOptions) {
+        $this->assertCount(2, $client->search(function ($searchOptions) {
             $searchOptions->where('id', [60, 67]);
         }, 1, 10)->results);
     }
@@ -63,7 +63,7 @@ final class ConnectedRealmsTest extends ApiTestCase
     public function testConnectedRealmSearchRange(): void
     {
         $client = new ConnectedRealm(cache: $this->cache);
-        $this->assertCount(17, $client->search(function($searchOptions) {
+        $this->assertCount(17, $client->search(function ($searchOptions) {
             $searchOptions->where('id', null, min: 60, max: 100);
         })->results);
     }

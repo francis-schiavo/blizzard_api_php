@@ -11,7 +11,8 @@ final class PlayableSpecializationTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testPlayableSpecializationIndex() {
+    public function testPlayableSpecializationIndex()
+    {
         $client = new PlayableSpecialization(cache: $this->cache);
         $this->assertObjectHasAttribute('character_specializations', $client->index());
     }
@@ -31,6 +32,6 @@ final class PlayableSpecializationTest extends ApiTestCase
     public function testPlayableSpecializationMedia(): void
     {
         $client = new PlayableSpecialization(cache: $this->cache);
-        $this->assertEquals('https://render-us.worldofwarcraft.com/icons/56/spell_nature_lightning.jpg', $client->media(262)->assets[0]->value);
+        $this->assertEquals('https://render.worldofwarcraft.com/us/icons/56/spell_nature_lightning.jpg', $client->media(262)->assets[0]->value);
     }
 }

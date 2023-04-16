@@ -29,7 +29,7 @@ class Metadata extends Request
      * @return array
      * @throws ApiException
      */
-    public function get(string $type, array $options = [], ): array
+    public function get(string $type, array $options = []): array
     {
         return $this->apiRequest(
             "{$this->baseUrl(BaseURL::community)}/metadata/$type",

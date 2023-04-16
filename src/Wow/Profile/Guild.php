@@ -29,6 +29,32 @@ class Guild extends Request
     }
 
     /**
+     * @param string $realm Realm name
+     * @param string $guild Guild name
+     * @param string|null $variant Endpoint variant
+     * @param array $options Request options
+     * @return stdClass
+     * @throws ApiException
+     */
+    private function guildRequest(string $realm, string $guild, string|null $variant = null, array $options = []): stdClass
+    {
+        $realm = $this->createSlug($realm);
+        $guild = $this->createSlug($guild);
+        $url = "{$this->baseUrl(BaseURL::game_data)}/guild/$realm/$guild";
+
+        if (is_string($variant)) {
+            $url .= "/$variant";
+        }
+
+        return $this->apiRequest($url, $this->defaultOptions($options));
+    }
+
+    protected function defaultOptions($options = []): array
+    {
+        return array_merge(['namespace' => EndpointNamespace::profile, 'version' => EndpointVersion::retail, 'ttl' => CacheDuration::CACHE_HOUR->value], $options);
+    }
+
+    /**
      * Return guild members
      *
      * @see https://develop.battle.net/documentation/api-reference/world-of-warcraft-profile-api
@@ -74,31 +100,5 @@ class Guild extends Request
     public function activity(string $realm, string $guild, array $options = []): stdClass
     {
         return $this->guildRequest($realm, $guild, 'activity', $options);
-    }
-
-    protected function defaultOptions($options = []): array
-    {
-        return array_merge(['namespace' => EndpointNamespace::profile, 'version' => EndpointVersion::retail, 'ttl' => CacheDuration::CACHE_HOUR->value], $options);
-    }
-
-    /**
-     * @param string $realm Realm name
-     * @param string $guild Guild name
-     * @param string|null $variant Endpoint variant
-     * @param array $options Request options
-     * @return stdClass
-     * @throws ApiException
-     */
-    private function guildRequest(string $realm, string $guild, string|null $variant = null, array $options = []): stdClass
-    {
-        $realm = $this->createSlug($realm);
-        $guild = $this->createSlug($guild);
-        $url = "{$this->baseUrl(BaseURL::game_data)}/guild/$realm/$guild";
-
-        if (is_string($variant)) {
-            $url .= "/$variant";
-        }
-
-        return $this->apiRequest($url, $this->defaultOptions($options));
     }
 }

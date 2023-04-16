@@ -13,10 +13,16 @@ final class PvpSeasonTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testPvpSeasonIndex() {
+    public function testPvpSeasonIndex()
+    {
         $client = new PvpSeason(cache: $this->cache);
 
         $this->assertObjectHasAttribute('seasons', $client->index());
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertObjectHasAttribute('seasons', $client->index(['version' => EndpointVersion::classic]));
     }
 
@@ -28,30 +34,38 @@ final class PvpSeasonTest extends ApiTestCase
         $client = new PvpSeason(cache: $this->cache);
 
         $this->assertObjectHasAttribute('season_start_timestamp', $client->get(27));
+
+        if ($this->ignoreClassicTests()) {
+            return;
+        }
+
         $this->assertObjectHasAttribute('season_start_timestamp', $client->get(2, ['version' => EndpointVersion::classic]));
     }
 
     /**
      * @throws ApiException
      */
-    public function testPvpSeasonLeaderboards() {
+    public function testPvpSeasonLeaderboards()
+    {
         $client = new PvpSeason(cache: $this->cache);
-        $this->assertObjectHasAttribute('leaderboards', $client->leaderboards( 27));
+        $this->assertObjectHasAttribute('leaderboards', $client->leaderboards(27));
     }
 
     /**
      * @throws ApiException
      */
-    public function testPvpSeasonLeaderboard() {
+    public function testPvpSeasonLeaderboard()
+    {
         $client = new PvpSeason(cache: $this->cache);
-        $this->assertObjectHasAttribute('entries', $client->leaderboard( 27, PvpBracket::x3));
+        $this->assertObjectHasAttribute('entries', $client->leaderboard(27, PvpBracket::x3));
     }
 
     /**
      * @throws ApiException
      */
-    public function testPvpSeasonRewards() {
+    public function testPvpSeasonRewards()
+    {
         $client = new PvpSeason(cache: $this->cache);
-        $this->assertObjectHasAttribute('rewards', $client->rewards( 27));
+        $this->assertObjectHasAttribute('rewards', $client->rewards(27));
     }
 }

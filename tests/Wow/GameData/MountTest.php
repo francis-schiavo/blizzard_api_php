@@ -32,7 +32,7 @@ final class MountTest extends ApiTestCase
     public function testMountSearch(): void
     {
         $client = new Mount(cache: $this->cache);
-        $this->assertEquals('Tartaruga de Montaria', $client->search(function($searchOptions) {
+        $this->assertEquals('Tartaruga de Montaria', $client->search(function ($searchOptions) {
             $searchOptions->where('name.en_US', 'Turtle')->order_by('id');
         })->results[0]->data->name->pt_BR);
     }

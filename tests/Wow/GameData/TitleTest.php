@@ -11,7 +11,8 @@ final class TitleTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testTitleIndex() {
+    public function testTitleIndex()
+    {
         $client = new Title(cache: $this->cache);
         $this->assertObjectHasAttribute('titles', $client->index());
     }
@@ -19,7 +20,8 @@ final class TitleTest extends ApiTestCase
     /**
      * @throws ApiException
      */
-    public function testTitleGet() {
+    public function testTitleGet()
+    {
         $client = new Title(cache: $this->cache);
         $this->assertEquals('Lieutenant Commander', $client->get(10)->name->en_US);
     }
